@@ -1,0 +1,8 @@
+*.xml
+/build
+*.mf
+/nbproject
+/src/overlay/chord
+/src/overlay/chordSim
+/src/overlay/vcubeTest
+/dist/
