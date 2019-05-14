@@ -160,19 +160,22 @@ public class Utils {
     }
     
     static public short findResponsible(short v, short[] timestamp) {
-        short z = 0;
-        short i = v;
-        while(true){
-            if(i < Network.size() && timestamp[i]%2 == 0) break;
-            z++;
-            i = (short) (v^z);
-        }
-/*        System.out.println("Encontrado "+i);
-        for(int j = 0; j < timestamp.length; j++){
-            System.out.print(timestamp[j]+", ");
-        }
-        System.out.println("");*/
-        return i;
+        int i = v;
+        do{ 
+            if(timestamp[i] % 2 == 0) {
+                System.out.println("responsável: "+i);
+                System.out.println("Timestamp: ");
+                for(int j = 0; j < timestamp.length; j++) {
+                    System.out.print(timestamp[j]+", ");
+                }
+                System.out.println("");
+                System.out.println("");
+                return (short) i;
+            }
+
+            i++;
+            if(i >= timestamp.length) i = 0;
+        } while(true);        
     }
     
     static public short responsibleKey(byte[] hash, short[] timestamp) {
@@ -182,8 +185,8 @@ public class Utils {
                 
         short j = v.shortValue();
         if(j < 0) j *= -1;
-        //TODO ta certo esse * -1?
         
+        System.out.println("Vertex: "+j);
         return findResponsible(j, timestamp);
         //return j;
     }
